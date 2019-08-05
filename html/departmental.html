@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>订餐汇总</title>
+  <script type="text/javascript" src="../jquery-3.4.1.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var time = new Date();
+        var day = ("0" + time.getDate()).slice(-2);
+        var month = ("0" + (time.getMonth() + 1)).slice(-2);
+        var today = time.getFullYear() + "-" + (month) + "-" + (day);
+        $('#date').val(today);
+      $("#date").ready(function () {
+        var text = $("#date").val(); //将select内的内容保存到变量text中
+        $.post("/php/personal_2.php", {
+            date: text
+          },
+          function (data) {
+            $("#userText").html(data);
+          });
+          var dt = new Date(text.split("-")[0], text.split("-")[1] - 1, text = text.split("-")[2]);
+                var weekDay = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+                var week=document.getElementById('week');
+                $("#week").html(weekDay[dt.getDay()]);
+      })
+      $("#date").change(function () {
+        var text = $("#date").val(); //将select内的内容保存到变量text中
+        $.post("/php/personal_2.php", {
+            date: text
+          },
+          function (data) {
+            $("#userText").html(data);
+          });
+          var dt = new Date(text.split("-")[0], text.split("-")[1] - 1, text = text.split("-")[2]);
+                var weekDay = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+                var week=document.getElementById('week');
+                $("#week").html(weekDay[dt.getDay()]);
+      })
+
+    })
+  </script>
+  <style type="text/css">
+    .a {
+      position: absolute;
+      top: 20%;
+      left: 5%;
+      width: 90%;
+      right: auto;
+      height: 320px;    
+      font-size: 18px;
+      text-align: left;
+    }
+    .c{
+  position: absolute;
+  top: 3%;
+  left:40%;
+  right: auto;
+  height: 20%;
+  font-weight: 700;
+  text-align: center;
+}
+.img{
+  position: absolute;
+  top: 2%;
+  left: 5%;
+}
+    span {
+      position: relative;
+      left: 5%;
+      width: 50%;
+      right: auto;
+      text-align: center;
+    }
+    hr{
+    position: absolute;
+    top:20%;
+    width: 100%;
+    left: 0;
+    size: 1px;
+    margin: 0;
+    padding: 0;
+    color: black;
+    align-self: center;
+  }
+  h3{
+    text-align: center;
+  }
+  </style>
+</head>
+
+<body>
+    <div class="img">
+        <img src="../1.png" width="80" height="80" />
+    </div>
+    <div class="c">
+      <p>欢迎使用</p>
+      <p>国控苏州订餐系统</p>
+    </div>
+    <hr>
+  <div class="a">
+      <h3>订餐汇总</h3>
+    <p>日期：
+      <input id="date" name="date" type="date">
+      <span id="week"></span>
+    </p>
+    <span id="userText"></span>
+  </div>
+</body>
+
+</html>

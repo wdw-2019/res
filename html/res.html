@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>评价汇总</title>
+    <script type="text/javascript" src="../jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*var time = new Date();
+            var day = ("0" + time.getDate()).slice(-2);
+            var month = ("0" + (time.getMonth() + 1)).slice(-2);
+            var today = time.getFullYear() + "-" + (month) + "-" + (day);
+            $('#date').val(today);*/
+            $("#date").ready(function () {
+                var text = $("#date").val(); //将select内的内容保存到变量text中
+                $.post("/php/res.php", {
+                        date: text
+                    },
+                    function (data) {
+                        $("#userText").html(data);
+                    });
+                var dt = new Date(text.split("-")[0], text.split("-")[1] - 1, text = text.split("-")[
+                2]);
+                var weekDay = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+                var week = document.getElementById('week');
+                $("#week").html(weekDay[dt.getDay()]);
+            })
+            $("#date").change(function () {
+                var text = $("#date").val(); //将select内的内容保存到变量text中
+                $.post("/php/res.php", {
+                        date: text
+                    },
+                    function (data) {
+                        $("#userText").html(data);
+                    });
+                var dt = new Date(text.split("-")[0], text.split("-")[1] - 1, text = text.split("-")[
+                2]);
+                var weekDay = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+                var week = document.getElementById('week');
+                $("#week").html(weekDay[dt.getDay()]);
+            })
+            $("#myYear").ready(function () {
+                var text = $("#myYear").val(); //将select内的内容保存到变量text中
+                $.post("/php/res_year.php", {
+                        year: text
+                    },
+                    function (data) {
+                        $("#userText").html(data);
+                    });
+            })
+            $("#myYear").change(function () {
+                $("#month").val(null);
+                $("#date").val(null);
+                var text = $("#myYear").val(); //将select内的内容保存到变量text中
+                $.post("/php/res_year.php", {
+                        year: text
+                    },
+                    function (data) {
+                        $("#userText").html(data);
+                    });
+            })
+            $("#month").change(function () {
+                $("#date").val(null);
+                var txt = $("#myYear").val(); 
+                var text = $("#month").val(); //将select内的内容保存到变量text中
+                $.post("/php/res_month.php", {
+                        year:txt,
+                        month: text
+                    },
+                    function (data) {
+                        $("#userText").html(data);
+                    });
+            })
+        })
+    </script>
+    <style type="text/css">
+        .a {
+            position: absolute;
+            top: 20%;
+            left: 5%;
+            width: 90%;
+            right: auto;
+            /* height: 320px;*/
+
+            font-size: 15px;
+            text-align: left;
+        }
+
+        .c {
+            position: absolute;
+            top: 3%;
+            left: 40%;
+            right: auto;
+            height: 20%;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .img {
+            position: absolute;
+            top: 2%;
+            left: 5%;
+        }
+
+        span[id="userText"] {
+            position: relative;
+            left: 1%;
+            width: 80%;
+            right: auto;
+            text-align: left;
+        }
+
+        hr {
+            position: absolute;
+            top: 20%;
+            width: 100%;
+            left: 0;
+            size: 1px;
+            margin: 0;
+            padding: 0;
+            color: black;
+            align-self: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img">
+        <img src="../1.png" width="80" height="80" />
+    </div>
+    <div class="c">
+        <p>欢迎使用</p>
+        <p>国控苏州订餐系统</p>
+    </div>
+    <hr>
+    <div class="a">
+         <p>年份汇总：
+               <select id="myYear">
+                    <option selected disabled style="display:none">请选择年份！</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+               </select>
+        </p>
+         <p>月份汇总：
+               <select id="month">
+         <option selected disabled style="display:none">请选择月份！</option>
+          <option value="01">1</option>
+          <option value="02">2</option>
+          <option value="03">3</option>
+          <option value="04">4</option>
+          <option value="05">5</option>
+          <option value="06">6</option>
+          <option value="07">7</option>
+          <option value="08">8</option>
+          <option value="09">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+        </p>
+        <p>日期：
+            <input id="date" name="date" type="date">
+            <span id="week"></span>
+        </p>
+        <span id="userText"></span>
+    </div>
+</body>
+
+</html>

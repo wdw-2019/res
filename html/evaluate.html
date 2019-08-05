@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>用餐评价</title>
+  <script type="text/javascript" src="../jquery-3.4.1.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var time = new Date();
+      var day = ("0" + time.getDate()).slice(-2);
+      var month = ("0" + (time.getMonth() + 1)).slice(-2);
+      var today = time.getFullYear() + "-" + (month) + "-" + (day);
+      $('#date').val(today);
+      $("#date").ready(function () {
+        var text = $("#date").val(); //将select内的内容保存到变量text中
+        var dt = new Date(text.split("-")[0], text.split("-")[1] - 1, text = text.split("-")[2]);
+        var weekDay = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+        $("#week").html(weekDay[dt.getDay()]);
+      })
+      $("#date").change(function () {
+        var text = $("#date").val(); //将select内的内容保存到变量text中
+        var dt = new Date(text.split("-")[0], text.split("-")[1] - 1, text = text.split("-")[2]);
+        var weekDay = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+        $("#week").html(weekDay[dt.getDay()]);
+      })
+    })
+  </script>
+  <style type="text/css">
+    .a {
+      position: absolute;
+      top: 25%;
+      left: 5%;
+      width: 90%;
+      right: auto;
+      /* height: 250px;*/
+      font-size: 15px;
+    }
+    .c {
+      position: absolute;
+      top: 3%;
+      left: 40%;
+      right: auto;
+      height: 20%;
+      font-weight: 700;
+      text-align: center;
+    }
+    .img {
+      position: absolute;
+      top: 2%;
+      left: 5%;
+      height: 20%;
+    }
+    textarea[id="eva"] {
+      position: relative;
+      left: 10%;
+      right: auto;
+      width: 60%;
+      height: 150px;
+    }
+    select {
+      position: relative;
+      left: 10%;
+      right: auto;
+      width: 60%;
+    }
+    input[type="submit"] {
+      position: relative;
+      left: 10%;
+      right: auto;
+      width: 60%;
+    }
+    input[id="date"] {
+      position: relative;
+      left: 10%;
+      right: auto;
+      width: 60%;
+    }
+    span{
+      position: relative;
+      left:10%;
+      right: auto;
+    }
+    hr {
+      position: absolute;
+      top: 23%;
+      width: 100%;
+      left: 0;
+      size: 1px;
+      margin: 0;
+      padding: 0;
+      color: black;
+      align-self: center;
+      text-align: center;
+    }
+    h3{
+    text-align: center;
+  }
+  </style>
+</head>
+<body>
+  <div class="img">
+    <img src="../1.png" width="80" height="80" />
+  </div>
+  <div class="c">
+    <p>欢迎使用</p>
+    <p>国控苏州订餐系统</p>
+  </div>
+  <hr>
+  <div class="a">
+      <h3>用餐评价</h3>
+    <form name="eva" action="/php/eva.php" method="POST">
+      <p>用餐评分：</p>
+      <select name="grade" id="grade">
+        <option value="5">5分！非常满意！</option>
+        <option value="4">4分！满意 ！</option>
+        <option value="3">3分！基本满意！</option>
+        <option value="2">2分！不满意 ！</option>
+        <option value="1">1分！很不满意！</option>
+      </select>
+      <p>个人意见：</p>
+      <p>
+        <textarea name="eva" id="eva"></textarea>
+      </p>
+      <p>日期：</p>
+      <p>
+        <input id="date" name="date" type="date" required>
+        <span id="week"></span>
+      </p>
+      <br>
+      <p>
+        <input type="submit" name="submit" value="提交">
+      </p>
+      <p>
+        <a href="res.html"> 评价汇总？点这里。 </a>
+      </p>
+    </form>
+  </div>
+</body>
+
+</html>
