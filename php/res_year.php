@@ -13,10 +13,10 @@
      //echo "共计".$rows."行 ".$colums."列<br/>";
     $field=["序号","评分","意见","日期"];
     if($rows_1){
-     echo "<table><tr>";
+     echo "<table border='1' style='border-collapse:collapse;'><tr>";
      for($i=0; $i < $colums; $i++){
          $field_name=$field[$i];
-         echo "<th>$field_name</th>";
+         echo "<th style='white-space:nowrap;'>$field_name</th>";
      }
      echo "</tr>";
      $j=1;
@@ -24,7 +24,12 @@
          echo "<tr>";       
             echo "<td>$j</td>";         
          for($i=1; $i<$colums; $i++){
-             echo "<td>$row[$i]</td>";
+             if($i==2){
+             echo "<td style='word-break:break-all; word-wrap:break-all;'>$row[$i]</td>";
+             }
+             else{
+                echo "<td style='white-space:nowrap;'>$row[$i]</td>";
+             }
          }     
          echo "</tr>";
          $j++;

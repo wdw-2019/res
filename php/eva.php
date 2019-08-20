@@ -5,7 +5,7 @@ if(!isset($_POST["submit"])){
 }//检测是否有submit操作 
 
 include('connect.php');//链接数据库
-$grade = intval($_POST['grade']);
+$grade =(float)$_POST['grade'];
 $eva=$_POST['eva'];
 $date = $_POST['date'];//post获得日期
 $q="insert into evaluate(grade,eva,date) values ('$grade','$eva','$date')";//向数据库插入表单传来的值的sql
@@ -18,9 +18,8 @@ if (!$reslut){
             </script>";//成功输出注册成功
             echo "
             <script>
-                  setTimeout(function(){window.location.href='/html/evaluate.html';},100);
+                  setTimeout(function(){window.location.replace('../html/evaluate.html');},100);
             </script>";
         }
-mysql_close($con);//关闭数据库
 ?>
    

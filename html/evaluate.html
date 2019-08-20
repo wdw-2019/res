@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
   <title>用餐评价</title>
   <script type="text/javascript" src="../jquery-3.4.1.js"></script>
   <script type="text/javascript">
@@ -28,30 +29,31 @@
       })
     })
   </script>
-  <style type="text/css">
+
+ <style type="text/css">
     .a {
       position: absolute;
-      top: 25%;
+      top: 20%;
       left: 5%;
       width: 90%;
       right: auto;
       /* height: 250px;*/
       font-size: 15px;
     }
-    .c {
+   .c {
       position: absolute;
       top: 3%;
       left: 40%;
-      right: auto;
-      height: 20%;
-      font-weight: 700;
-      text-align: center;
+      right: auto ;
+      height: 20% ;
+      font-weight: 700 ;
+      text-align: center ;
+    
     }
     .img {
       position: absolute;
       top: 2%;
       left: 5%;
-      height: 20%;
     }
     textarea[id="eva"] {
       position: relative;
@@ -59,12 +61,6 @@
       right: auto;
       width: 60%;
       height: 150px;
-    }
-    select {
-      position: relative;
-      left: 10%;
-      right: auto;
-      width: 60%;
     }
     input[type="submit"] {
       position: relative;
@@ -83,17 +79,17 @@
       left:10%;
       right: auto;
     }
-    hr {
-      position: absolute;
-      top: 23%;
-      width: 100%;
-      left: 0;
+     hr {
+      position: absolute ;
+      top: 20% ;
+      width: 100% ;
+      left: 0 ;
       size: 1px;
       margin: 0;
-      padding: 0;
+      padding: 0 ;
       color: black;
       align-self: center;
-      text-align: center;
+      text-align: center;   
     }
     h3{
     text-align: center;
@@ -111,15 +107,11 @@
   <hr>
   <div class="a">
       <h3>用餐评价</h3>
-    <form name="eva" action="/php/eva.php" method="POST">
-      <p>用餐评分：</p>
-      <select name="grade" id="grade">
-        <option value="5">5分！非常满意！</option>
-        <option value="4">4分！满意 ！</option>
-        <option value="3">3分！基本满意！</option>
-        <option value="2">2分！不满意 ！</option>
-        <option value="1">1分！很不满意！</option>
-      </select>
+    <form name="eva" action="../php/eva.php" method="POST">
+      <p>用餐评分：
+      <input type="hidden" name="grade" id="grade" >
+    <div id="test6"></div></p>
+      
       <p>个人意见：</p>
       <p>
         <textarea name="eva" id="eva"></textarea>
@@ -138,6 +130,27 @@
       </p>
     </form>
   </div>
+
+  <script src="../layui/layui.all.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use(['rate'], function(){
+  var rate = layui.rate;
+  rate.render({
+    elem: '#test6'
+    ,value: 1.5
+    ,half: true
+    ,text: true
+    ,length: 10
+    ,setText: function(value){
+      this.span.text(value);
+    }
+    ,choose: function(value){
+      $("#grade").val(value);
+  }
+  })
+});
+</script>
 </body>
 
 </html>

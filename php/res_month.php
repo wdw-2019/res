@@ -12,31 +12,36 @@
     // echo "test数据库的"."$table_name"."表的所有用户数据如下：<br/>";
      //echo "共计".$rows."行 ".$colums."列<br/>";
     $field=["序号","评分","意见","日期"];
-if($rows_1){
-     echo "<table><tr>";
-     for($i=0; $i < $colums; $i++){
-         $field_name=$field[$i];
-         echo "<th>$field_name</th>";
-     }
-     echo "</tr>";
-     echo "</tr>";
-     $j=1;
-    while($row=mysqli_fetch_row($result)){
-         echo "<tr>";       
-            echo "<td>$j</td>";         
-         for($i=1; $i<$colums; $i++){
-             echo "<td>$row[$i]</td>";
-         }     
-         echo "</tr>";
-         $j++;
-     
-    }
-     echo "</table>";
-     echo "<br>";
-     $result_1=mysqli_fetch_array($res_1);
-     $a=$result_1[0];
-     echo "<font color='red'>综合评分：</font>";
-     echo "<font color='red'>$a</font>";}
+    if($rows_1){
+        echo "<table border='1' style='border-collapse:collapse;'><tr>";
+        for($i=0; $i < $colums; $i++){
+            $field_name=$field[$i];
+            echo "<th style='white-space:nowrap;'>$field_name</th>";
+        }
+        echo "</tr>";
+        $j=1;
+       while($row=mysqli_fetch_row($result)){
+            echo "<tr>";       
+               echo "<td>$j</td>";         
+            for($i=1; $i<$colums; $i++){
+                if($i==2){
+                echo "<td style='word-break:break-all; word-wrap:break-all;'>$row[$i]</td>";
+                }
+                else{
+                   echo "<td style='white-space:nowrap;'>$row[$i]</td>";
+                }
+            }     
+            echo "</tr>";
+            $j++;
+        
+       }
+        echo "</table>";
+        echo "<br>";
+        $result_1=mysqli_fetch_array($res_1);
+        $a=$result_1[0];
+        echo "<font color='red'>综合评分：</font>";
+        echo "<font color='red'>$a</font>";
+       }
      else{
         echo "<font color='red'>该月份无数据！</font>";
      }

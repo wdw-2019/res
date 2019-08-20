@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>核销系统</title>
+    <script type="text/javascript" src="../jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#date").change(function () {
+                var date = $("#date").val();//将select内的内容保存到变量text中
+                var date1 = $("#date1").val();
+                var hexiao = $("#hexiao").val();
+                $.post("../php/hexiao.php", {
+                        date: date,
+                        date1:date1,
+                        hexiao:hexiao
+                    },
+                    function (data) {
+                        $("#userText").html(data);
+                    });
+            })
+            $("#date1").change(function () {
+                var date = $("#date").val();//将select内的内容保存到变量text中
+                var date1 = $("#date1").val();
+                var hexiao = $("#hexiao").val();
+                $.post("../php/hexiao.php", {
+                        date: date,
+                        date1:date1,
+                        hexiao:hexiao
+                    },
+                    function (data) {
+                        $("#userText").html(data);
+                    });
+            })
+            $("#hexiao").change(function () {
+                var date = $("#date").val();//将select内的内容保存到变量text中
+                var date1 = $("#date1").val();
+                var hexiao = $("#hexiao").val();
+                $.post("../php/hexiao.php", {
+                        date: date,
+                        date1:date1,
+                        hexiao:hexiao
+                    },
+                    function (data) {
+                        $("#userText").html(data);
+                    });
+            })
+            $("#qrhx").click(function () {
+                var date = $("#date").val();//将select内的内容保存到变量text中
+                var date1 = $("#date1").val();
+                
+                $.post("../php/qrhx.php", {
+                        date: date,
+                        date1:date1
+                    },
+                    function (data) {
+                        alert(data)
+                    });
+                    
+                location.reload();
+                })
+            $("#qxhx").click(function () {
+                var date = $("#date").val();//将select内的内容保存到变量text中
+                var date1 = $("#date1").val();
+                
+                $.post("../php/qxhx.php", {
+                        date: date,
+                        date1:date1
+                    },
+                    function (data) {
+                        alert(data)
+                    });
+                    
+                location.reload();
+                })
+        })
+</script>
+<style type="text/css">
+    .a {
+        position: absolute;
+        top: 20%;
+        left: 5%;
+        width: 90%;
+        right: auto;
+        /* height: 320px;*/
+
+        font-size: 15px;
+        text-align: left;
+    }
+
+    .c {
+        position: absolute;
+        top: 3%;
+        left: 40%;
+        right: auto;
+        height: 20%;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .img {
+        position: absolute;
+        top: 2%;
+        left: 5%;
+    }
+
+    span[id="userText"] {
+        position: relative;
+        left: 1%;
+        width: 80%;
+        right: auto;
+        text-align: left;
+    }
+
+    hr {
+        position: absolute;
+        top: 20%;
+        width: 100%;
+        left: 0;
+        size: 1px;
+        margin: 0;
+        padding: 0;
+        color: black;
+        align-self: center;
+    }
+</style>
+
+</head>
+<body>
+    <div class="img">
+        <img src="../1.png" width="80" height="80" />
+    </div>
+    <div class="c">
+        <p>欢迎使用</p>
+        <p>国控苏州订餐系统</p>
+    </div>
+    <hr>
+    <div class="a">
+        <p>日期：<br>
+            起始：<input id="date" name="date" type="date"><br>
+            
+            结束：<input id="date1" name="date1" type="date"><br>
+        </p>
+        <p>核销情况：
+                <select id="hexiao" name="hexiao">
+                        <option selected disabled style="display:none">请选择！</option>
+                        <option value="全部">全部</option>
+                        <option value="已核销">已核销</option>
+                        <option value="未核销">未核销</option>
+                   </select>
+            </p>
+            <span id="userText"></span>
+            <p>
+                    <input type="button" name="qrhx" id="qrhx" value="确认核销">
+                    <input type="button" name="qxhx" id="qxhx" value="取消核销">
+            </p>
+    </div>
+</body>
+</html>

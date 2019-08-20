@@ -19,14 +19,14 @@
       $("#department").ready(function () {
         var text = $("#department").val(); //将select内的内容保存到变量text中
         var date_1 = $("#date").val();
-        $.post("/php/personal_1.php", {
+        $.post("../php/personal_1.php", {
             department: text,
             date: date_1
           },
           function (data) {
             $("#userText").html(data);
           });
-          $.post("/php/echo_num.php", {
+          $.post("../php/echo_num.php", {
             department: text,
             date: date_1
           },
@@ -38,14 +38,14 @@
       $("#department").change(function () {
         var text = $("#department").val(); //将select内的内容保存到变量text中
         var date_1 = $("#date").val();
-        $.post("/php/personal_1.php", {
+        $.post("../php/personal_1.php", {
             department: text,
             date: date_1
           },
           function (data) {
             $("#userText").html(data);
           });
-          $.post("/php/echo_num.php", {
+          $.post("../php/echo_num.php", {
             department: text,
             date: date_1
           },
@@ -56,14 +56,14 @@
       $("#date").ready(function () {
         var text = $("#department").val(); //将select内的内容保存到变量text中
         var date_1 = $("#date").val();
-        $.post("/php/personal_1.php", {
+        $.post("../php/personal_1.php", {
             department: text,
             date: date_1
           },
           function (data) {
             $("#userText").html(data);
           });
-          $.post("/php/echo_num.php", {
+          $.post("../php/echo_num.php", {
             department: text,
             date: date_1
           },
@@ -79,14 +79,14 @@
       $("#date").change(function () {
         var text = $("#department").val(); //将select内的内容保存到变量text中
         var date_1 = $("#date").val();
-        $.post("/php/personal_1.php", {
+        $.post("../php/personal_1.php", {
             department: text,
             date: date_1
           },
           function (data) {
             $("#userText").html(data);
           });
-          $.post("/php/echo_num.php", {
+          $.post("../php/echo_num.php", {
             department: text,
             date: date_1
           },
@@ -214,7 +214,7 @@ input[type="button"]{
   <hr>
   <div class="a">
       <h3>开始订餐</h3>
-    <form class="b" name="personal" action="/php/personal.php" method="POST">
+    <form class="b" name="personal" action="../php/personal.php" method="POST">
       <p> <label for="department">所属部门：</label>
         <select name="department" id="department">
           <option selected disabled style="display:none">请选择部门！</option>

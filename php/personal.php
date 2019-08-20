@@ -8,6 +8,7 @@
     $num = $_POST['num'];//post获得订餐数量
     $department=$_POST['department'];
     $date = $_POST['date'];//post获得日期
+    $hexiao="未核销";
     if ($department && $num && $date){//如果都不为空
        // $sql = "select * from restaurant where department = '$department' ";
         $sql_1="select * from restaurant where department = '$department' and date='$date'";
@@ -28,12 +29,12 @@
                 </script>";//成功输出注册成功
                 echo "
                 <script>
-                      setTimeout(function(){window.location.href='/html/personal.html';},100);
+                      setTimeout(function(){window.location.replace('../html/personal.html');},100);
                 </script>";
             }
         }
         else {
-            $q="insert into restaurant (department,num,date) values ('$department','$num','$date')";
+            $q="insert into restaurant (department,num,date,hexiao) values ('$department','$num','$date','$hexiao')";
             $reslut=mysqli_query($con,$q);//执行sql
             if (!$reslut){
                 die('Error: ' . mysql_error());//如果sql执行失败输出错误
@@ -43,7 +44,7 @@
                 </script>";//成功输出注册成功
                 echo "
                 <script>
-                      setTimeout(function(){window.location.href='/html/personal.html';},100);
+                      setTimeout(function(){window.location.replace('../html/personal.html');},100);
                 </script>";
             }
            
@@ -56,11 +57,9 @@
            </script>";
            echo "
                  <script>
-                       setTimeout(function(){window.location.href='/html/personal.html';},100);
+                       setTimeout(function(){window.location.replace('../html/personal.html');},100);
                  </script>";
 
                    //如果错误使用js 1秒后跳转到登录页面重试;
 }
-
-    mysql_close($con);//关闭数据库
 ?>
